@@ -8,6 +8,7 @@ const getPortfolioURL: string = `${BASE_URL}/api/oc/v1/aggregated-portfolio`;
 const getPortfolioActivityURL: string = `${BASE_URL}/api/oc/v1/portfolio/activity`;
 const getPortfolioNFTURL: string = `${BASE_URL}/api/oc/v1/portfolio/nft`;
 const getOrderHistoryURL: string = `${BASE_URL}/api/oc/v1/orders`;
+const getUserOperationGasPriceURL: string = `${BASE_URL}/api/oc/v1/gas-values`
 
 export const getAccount = async (token: string) => {
   const headers = {
@@ -106,3 +107,20 @@ export const getOrderHistory = async (token: string) => {
     }
   }
 }
+
+export const getUserOperationGasPrice = async (token: string) => {
+  const headers = {
+    Authorization: `Bearer ${token}`
+  }
+  try {
+    const response = await axios.get(getUserOperationGasPriceURL, { headers })
+
+    console.log("getting userop gasprice: " , response.data);
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return error.message;
+    }
+  }
+ 
+} 
