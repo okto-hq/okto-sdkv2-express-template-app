@@ -4,6 +4,9 @@ import { ErrorResponse } from '../types/error';
 import { ChainResponse } from '../types/getChains';
 import { TokenResponse } from '../types/getTokens';
 import { PortfolioResponse } from '../types/getPortfolio';
+import { PortfolioActivityResponse } from '../types/getPortfolioActivity';
+import { PortfolioNFTResponse } from '../types/getPortfolioNFT';
+import { OrderHistoryResponse } from '../types/getOrderHistory';
 
 export const getAccount = async (token: string) => {
   const account: GetAccountResponse | ErrorResponse = await explorerClient.getAccount(token);
@@ -23,4 +26,19 @@ export const getTokens = async (token: string) => {
 export const getPortfolio = async (token: string) => {
   const portfolio: PortfolioResponse | ErrorResponse = await explorerClient.getPortfolio(token);
   return portfolio;
+}
+
+export const getPortfolioActivity = async (token: string) => {
+  const portfolio: PortfolioActivityResponse | ErrorResponse = await explorerClient.getPortfolioActivity(token);
+  return portfolio;
+}
+
+export const getPortfolioNFT = async (token: string) => {
+  const portfolioNFT: PortfolioNFTResponse | ErrorResponse = await explorerClient.getPortfolioNFT(token);
+  return portfolioNFT;
+}
+
+export const getOrderHistory = async (token: string) => {
+  const orderHistory: OrderHistoryResponse | ErrorResponse = await explorerClient.getOrderHistory(token);
+  return orderHistory;
 }

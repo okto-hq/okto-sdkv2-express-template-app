@@ -24,3 +24,21 @@ export const portfolio = async (req: Request, res: Response, next: NextFunction)
   const portfolio = await explorerService.getPortfolio(token);
   res.json(portfolio);
 }
+
+export const portfolioActivity = async (req: Request, res: Response, next: NextFunction) => {
+  const token: string = req.headers.authorization?.split(' ')[1] || '';
+  const portfolio = await explorerService.getPortfolioActivity(token);
+  res.json(portfolio);
+}
+
+export const portfolioNFT = async (req: Request, res: Response, next: NextFunction) => {
+  const token: string = req.headers.authorization?.split(' ')[1] || '';
+  const portfolioNFT = await explorerService.getPortfolioNFT(token);
+  res.json(portfolioNFT);
+}
+
+export const orderHistory = async (req: Request, res: Response, next: NextFunction) => {
+  const token: string = req.headers.authorization?.split(' ')[1] || '';
+  const orderHistory = await explorerService.getOrderHistory(token);
+  res.json(orderHistory);
+}

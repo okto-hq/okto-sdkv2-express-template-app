@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { account, chains, portfolio, tokens } from '../controllers/explorerController';
+import { account, chains, orderHistory, portfolio, portfolioActivity, portfolioNFT, tokens } from '../controllers/explorerController';
 
 const router = Router();
 
@@ -7,5 +7,8 @@ router.get('/account', account);
 router.get('/chains', chains);
 router.get('/tokens', tokens);
 router.get('/portfolio', portfolio);
+router.get('/portfolio-activity', portfolioActivity);
+router.get('/portfolio-nft', portfolioNFT);
+router.get('/order-history', orderHistory);
 
 export default router;
