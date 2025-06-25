@@ -1,4 +1,4 @@
-import { toHex } from "viem";
+import { Hex, toHex } from "viem";
 import { nonceToBigInt } from "../../helper/nonceToBigInt";
 import { SessionConfig } from "../../types/sessionConfig";
 import { Constants } from "../../helper/constants";
@@ -8,7 +8,9 @@ export async function generateUserOp(
   nonce: string,
   sessionConfig: SessionConfig,
   callData: string,
-  gasPrice: any
+  gasPrice: any ,
+  clientSWA: Hex ,
+  clientPrivateKey: string
 ) {
   const userOp = {
     sender: sessionConfig.userSWA,
@@ -28,6 +30,8 @@ export async function generateUserOp(
     callData: callData,
     paymasterData: await paymasterData({
       nonce,
+      clientSWA ,
+      clientPrivateKey ,
       validUntil: new Date(Date.now() + 6 * Constants.HOURS_IN_MS),
     }),
   };

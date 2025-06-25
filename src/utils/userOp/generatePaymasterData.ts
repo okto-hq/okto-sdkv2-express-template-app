@@ -10,12 +10,6 @@ import {
 } from "viem";
 import { nonceToBigInt } from "../../helper/nonceToBigInt";
 import { signMessage } from "viem/accounts";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const clientPrivateKey = process.env.OKTO_CLIENT_PRIVATE_KEY as Hash;
-const clientSWA = process.env.OKTO_CLIENT_SWA as Hex;
 
 /**
  * Generates paymaster data for transactions
@@ -71,7 +65,7 @@ export async function generatePaymasterData(
   return paymasterData;
 }
 
-export async function paymasterData({ nonce, validUntil, validAfter }: any) {
+export async function paymasterData({ nonce,clientSWA , clientPrivateKey, validUntil, validAfter }: any) {
   return generatePaymasterData(
     clientSWA,
     clientPrivateKey,

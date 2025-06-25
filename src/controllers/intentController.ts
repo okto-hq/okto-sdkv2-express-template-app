@@ -8,10 +8,17 @@ export const tokenTransfer = async (
 ) => {
   const authToken: string = req.headers.authorization?.split(" ")[1] || "";
 
-  const { caip2Id, recipient, token, amount, feePayerAddress, sessionConfig } =
-    req.body;
+  const {
+    caip2Id,
+    recipient,
+    token,
+    amount,
+    feePayerAddress,
+    sessionConfig,
+    clientSWA,
+    clientPrivateKey,
+  } = req.body;
 
-  console.log("request body: ", req.body);
   const data = {
     caip2Id,
     recipient,
@@ -23,6 +30,41 @@ export const tokenTransfer = async (
     authToken,
     data,
     sessionConfig,
+    clientSWA,
+    clientPrivateKey,
+    feePayerAddress
+  );
+
+  res.json(jobId);
+};
+
+export const rawTransaction = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const authToken: string = req.headers.authorization?.split(" ")[1] || "";
+
+  const {
+    caip2Id,
+    transaction,
+    feePayerAddress,
+    sessionConfig,
+    clientSWA,
+    clientPrivateKey,
+  } = req.body;
+
+  const data = {
+    caip2Id,
+    transaction,
+  };
+
+  const jobId = await intentService.rawTransaction(
+    authToken,
+    data,
+    sessionConfig,
+    clientSWA,
+    clientPrivateKey,
     feePayerAddress
   );
 
