@@ -12,3 +12,9 @@ export const chains = async (req: Request, res: Response, next: NextFunction) =>
   const chains = await explorerService.getChains(token);
   res.json(chains);
 }
+
+export const tokens = async (req: Request, res: Response, next: NextFunction) => {
+  const token: string = req.headers.authorization?.split(' ')[1] || '';
+  const tokens = await explorerService.getTokens(token);
+  res.json(tokens);
+}

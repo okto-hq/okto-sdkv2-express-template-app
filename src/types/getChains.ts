@@ -1,4 +1,4 @@
-export interface GetChainResponse {
+export interface ChainResponse {
   status: string,
   data: {
     network: [{
