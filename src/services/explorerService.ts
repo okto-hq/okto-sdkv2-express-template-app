@@ -3,6 +3,7 @@ import { GetAccountResponse } from '../types/getAccount';
 import { ErrorResponse } from '../types/error';
 import { ChainResponse } from '../types/getChains';
 import { TokenResponse } from '../types/getTokens';
+import { PortfolioResponse } from '../types/getPortfolio';
 
 export const getAccount = async (token: string) => {
   const account: GetAccountResponse | ErrorResponse = await explorerClient.getAccount(token);
@@ -17,4 +18,9 @@ export const getChains = async (token: string) => {
 export const getTokens = async (token: string) => {
   const tokens: TokenResponse | ErrorResponse = await explorerClient.getTokens(token);
   return tokens;
+}
+
+export const getPortfolio = async (token: string) => {
+  const portfolio: PortfolioResponse | ErrorResponse = await explorerClient.getPortfolio(token);
+  return portfolio;
 }
