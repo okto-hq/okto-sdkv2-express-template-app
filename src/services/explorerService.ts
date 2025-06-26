@@ -7,6 +7,7 @@ import { PortfolioResponse } from '../types/getPortfolio';
 import { PortfolioActivityResponse } from '../types/getPortfolioActivity';
 import { PortfolioNFTResponse } from '../types/getPortfolioNFT';
 import { OrderHistoryResponse } from '../types/getOrderHistory';
+import { ContractDataResponse } from '../types/readContractData';
 
 export const getAccount = async (token: string) => {
   const account: GetAccountResponse | ErrorResponse = await explorerClient.getAccount(token);
@@ -41,4 +42,9 @@ export const getPortfolioNFT = async (token: string) => {
 export const getOrderHistory = async (token: string) => {
   const orderHistory: OrderHistoryResponse | ErrorResponse = await explorerClient.getOrderHistory(token);
   return orderHistory;
+}
+
+export const readContractData = async (token: string, caip2id: string, data: any) => {
+  const contractData: ContractDataResponse | ErrorResponse = await explorerClient.readContractData(token, caip2id, data);
+  return contractData;
 }

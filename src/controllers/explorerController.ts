@@ -42,3 +42,11 @@ export const orderHistory = async (req: Request, res: Response, next: NextFuncti
   const orderHistory = await explorerService.getOrderHistory(token);
   res.json(orderHistory);
 }
+
+export const readContractData = async (req: Request, res: Response, next: NextFunction) => {
+  const token: string = req.headers.authorization?.split(' ')[1] || '';
+  const caip2id: string = req.body.caip2id;
+  const data: any = req.body.data;
+  const contractData = await explorerService.readContractData(token, caip2id, data);
+  res.json(contractData);
+}

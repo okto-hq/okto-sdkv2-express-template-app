@@ -9,6 +9,7 @@ const getPortfolioActivityURL: string = `${BASE_URL}/api/oc/v1/portfolio/activit
 const getPortfolioNFTURL: string = `${BASE_URL}/api/oc/v1/portfolio/nft`;
 const getOrderHistoryURL: string = `${BASE_URL}/api/oc/v1/orders`;
 const getUserOperationGasPriceURL: string = `${BASE_URL}/api/oc/v1/gas-values`;
+const readContractDataURL: string = `${BASE_URL}/api/oc/v1/readContractData`;
 
 export const getAccount = async (token: string) => {
   const headers = {
@@ -19,7 +20,7 @@ export const getAccount = async (token: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.message;
+      return error.response?.data;
     }
   }
 };
@@ -33,7 +34,7 @@ export const getChains = async (token: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.message;
+      return error.response?.data;
     }
   }
 };
@@ -47,7 +48,7 @@ export const getTokens = async (token: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.message;
+      return error.response?.data;
     }
   }
 };
@@ -61,7 +62,7 @@ export const getPortfolio = async (token: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.message;
+      return error.response?.data;
     }
   }
 };
@@ -75,7 +76,7 @@ export const getPortfolioActivity = async (token: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.message;
+      return error.response?.data;
     }
   }
 };
@@ -89,7 +90,7 @@ export const getPortfolioNFT = async (token: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.message;
+      return error.response?.data;
     }
   }
 };
@@ -103,7 +104,7 @@ export const getOrderHistory = async (token: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.message;
+      return error.response?.data;
     }
   }
 };
@@ -117,7 +118,26 @@ export const getUserOperationGasPrice = async (token: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.message;
+      return error.response?.data;
     }
   }
 };
+
+export const readContractData = async (token: string, caip2id: string, data: any) => {
+  const headers = {
+    Authorization: `Bearer ${token}`
+  };
+  const body = {
+    caip2id: caip2id,
+    data: data
+  }
+  try {
+    const response = await axios.post(readContractDataURL, body, { headers });
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return error.response?.data;
+    }
+  }
+
+}
