@@ -7,13 +7,13 @@ import { paymasterData } from "./generatePaymasterData";
 export async function generateUserOp(
   nonce: string,
   sessionConfig: SessionConfig,
-  callData: string,
-  gasPrice: any ,
-  clientSWA: Hex ,
+  callData: Hex,
+  gasPrice: any,
+  clientSWA: Hex,
   clientPrivateKey: string
 ) {
   const userOp = {
-    sender: sessionConfig.userSWA,
+    sender: sessionConfig.userSWA as Hex,
     nonce: toHex(nonceToBigInt(nonce), { size: 32 }),
     paymaster: Constants.getEnvConfig().PAYMASTER_ADDRESS, //paymaster address
     callGasLimit: toHex(Constants.GAS_LIMITS.CALL_GAS_LIMIT),
@@ -30,8 +30,8 @@ export async function generateUserOp(
     callData: callData,
     paymasterData: await paymasterData({
       nonce,
-      clientSWA ,
-      clientPrivateKey ,
+      clientSWA,
+      clientPrivateKey,
       validUntil: new Date(Date.now() + 6 * Constants.HOURS_IN_MS),
     }),
   };

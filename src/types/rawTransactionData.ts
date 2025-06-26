@@ -1,16 +1,16 @@
 export interface RawTransactionData {
   caip2Id: string;
-  transaction: EVMRawTransaction | AptosRawTransaction;
+  transaction: EVMRawTransactionData | AptosRawTransactionData;
 }
 
-interface EVMRawTransaction {
+export interface EVMRawTransactionData {
   from: string;
   to: string;
   data: string;
   value: string;
 }
 
-interface AptosRawTransaction {
+export interface AptosRawTransactionData {
   function: string;
   typeArguments: [string];
   functionArguments: [string];

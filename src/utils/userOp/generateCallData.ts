@@ -1,12 +1,3 @@
-import * as intentClient from "../api/intentClient";
-import * as explorerClient from "../api/explorerClient";
-import { TokenTransferData } from "../types/tokenTransferData";
-import { RawTransactionData } from "../types/rawTransactionData";
-import { IntentExecuteResponse } from "../types/intentExecute";
-import { ErrorResponse } from "../types/error";
-import { SessionConfig } from "../types/sessionConfig";
-import { v4 as uuidv4 } from "uuid";
-import { Constants } from "../helper/constants";
 import {
   encodeAbiParameters,
   encodeFunctionData,
@@ -15,22 +6,22 @@ import {
   stringToBytes,
   toHex,
 } from "viem";
-import { nonceToBigInt } from "../helper/nonceToBigInt";
-import { INTENT_ABI } from "../helper/abi";
-import { generateUserOp } from "../utils/userOp/generateUserOp";
-import { signUserOp } from "../utils/userOp/signUserOp";
+import { nonceToBigInt } from "../../helper/nonceToBigInt";
+import { INTENT_ABI } from "../../helper/abi";
+import { Constants } from "../../helper/constants";
+import { TokenTransferData } from "../../types/tokenTransferData";
+import { SessionConfig } from "../../types/sessionConfig";
+import * as explorerClient from "../../api/explorerClient";
+import { RawTransactionData } from "../../types/rawTransactionData";
 
-export const tokenTransfer = async (
-  authToken: string,
+export async function generateTokenTransferCallData(
+  nonce: string,
   data: TokenTransferData,
+  feePayerAddress: string,
   sessionConfig: SessionConfig,
   clientSWA: Hex,
-  clientPrivateKey: string,
-  feePayerAddress?: string
-) => {
-  // Generate nonce
-  const nonce = uuidv4();
-
+  authToken: string
+): Promise<Hex> {
   // Get the Intent execute API info as required on Okto chain
   const jobParametersAbiType =
     "(string caip2Id, string recipientWalletAddress, string tokenAddress, uint amount)";
@@ -44,12 +35,6 @@ export const tokenTransfer = async (
     (chain: any) => chain.caip_id.toLowerCase() === data.caip2Id.toLowerCase()
   );
 
-  // Feepayer address set to default if not provided
-  if (!feePayerAddress) {
-    feePayerAddress = Constants.FEE_PAYER_ADDRESS;
-  }
-
-  // Generate calldata
   const calldata = encodeAbiParameters(
     parseAbiParameters("bytes4, address,uint256, bytes"),
     [
@@ -94,38 +79,17 @@ export const tokenTransfer = async (
     ]
   );
 
-  const gasPrice = await explorerClient.getUserOperationGasPrice(authToken);
+  return calldata;
+}
 
-  // Generate unsigned userOp
-  const userOp = await generateUserOp(
-    nonce,
-    sessionConfig,
-    calldata,
-    gasPrice,
-    clientSWA,
-    clientPrivateKey
-  );
-
-  // Sign the userOp
-  const signedUserOp = await signUserOp(userOp, sessionConfig);
-
-  const jobId: IntentExecuteResponse | ErrorResponse =
-    await intentClient.execute(authToken, signedUserOp);
-
-  return jobId;
-};
-
-export const rawTransaction = async (
-  authToken: string,
+export async function generateRawTransactionCallData(
+  nonce: string,
   data: RawTransactionData,
+  feePayerAddress: string,
   sessionConfig: SessionConfig,
   clientSWA: Hex,
-  clientPrivateKey: string,
-  feePayerAddress?: string
-) => {
-  // Generate nonce
-  const nonce = uuidv4();
-
+  authToken: string
+): Promise<Hex> {
   // Get the Intent execute API info as required on Okto chain
   const jobParametersAbiType = "(string caip2Id, bytes[] transactions)";
   const gsnDataAbiType = `(bool isRequired, string[] requiredNetworks, ${jobParametersAbiType}[] tokens)`;
@@ -138,12 +102,6 @@ export const rawTransaction = async (
     (chain: any) => chain.caip_id.toLowerCase() === data.caip2Id.toLowerCase()
   );
 
-  // Feepayer address set to default if not provided
-  if (!feePayerAddress) {
-    feePayerAddress = Constants.FEE_PAYER_ADDRESS;
-  }
-
-  // Generate calldata
   const calldata = encodeAbiParameters(
     parseAbiParameters("bytes4, address,uint256, bytes"),
     [
@@ -188,23 +146,5 @@ export const rawTransaction = async (
     ]
   );
 
-  const gasPrice = await explorerClient.getUserOperationGasPrice(authToken);
-
-  // Generate unsigned userOp
-  const userOp = await generateUserOp(
-    nonce,
-    sessionConfig,
-    calldata,
-    gasPrice,
-    clientSWA,
-    clientPrivateKey
-  );
-
-  // Sign the userOp
-  const signedUserOp = await signUserOp(userOp, sessionConfig);
-
-  const jobId: IntentExecuteResponse | ErrorResponse =
-    await intentClient.execute(authToken, signedUserOp);
-
-  return jobId;
-};
+  return calldata;
+}
