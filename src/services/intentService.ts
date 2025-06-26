@@ -7,7 +7,6 @@ import { ErrorResponse } from "../types/error";
 import { SessionConfig } from "../types/sessionConfig";
 import { v4 as uuidv4 } from "uuid";
 import { Constants } from "../helper/constants";
-import { CLIENT_SWA } from "../config/env";
 import {
   encodeAbiParameters,
   encodeFunctionData,
@@ -62,7 +61,7 @@ export const tokenTransfer = async (
         functionName: Constants.FUNCTION_NAME,
         args: [
           toHex(nonceToBigInt(nonce), { size: 32 }),
-          CLIENT_SWA,
+          clientSWA,
           sessionConfig.userSWA,
           feePayerAddress,
           encodeAbiParameters(

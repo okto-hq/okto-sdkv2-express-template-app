@@ -1,14 +1,5 @@
-import { OKTO_CLIENT_PRIVATE_KEY } from '../../config/env';
+import { Hex } from 'viem';
 import { ethers } from "ethers";
-
-const client_private_key = OKTO_CLIENT_PRIVATE_KEY;
-
-// Replace with your actual private key (Client Private Key)
-// Remove '0x' prefix if it exists
-const privateKey = client_private_key.startsWith("0x")
-  ? client_private_key.slice(2)
-  : client_private_key;
-const wallet = new ethers.Wallet(privateKey);
 
 /**
  * Signs any arbitrary payload (no key sorting).
@@ -17,8 +8,10 @@ const wallet = new ethers.Wallet(privateKey);
  *
  */
 export async function generateClientSignature(
+  clientPK: Hex,
   data: Record<string, any>
 ): Promise<string> {
+  const wallet = new ethers.Wallet(clientPK);
   const message = JSON.stringify(data);
   const signature = await wallet.signMessage(message);
   return signature;
