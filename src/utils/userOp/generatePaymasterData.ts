@@ -15,18 +15,18 @@ import { signMessage } from "viem/accounts";
  * Generates paymaster data for transactions
  *
  * @param address - The client's Smart Wallet Account (SWA) address
- * @param privateKey - The client's private key used for signing
+ * @param clientPK - The client's private key used for signing
  * @param nonce - The transaction nonce
  * @param validUntil - Timestamp until which the paymaster data is valid (in seconds)
  * @param validAfter - Timestamp after which the paymaster data becomes valid (in seconds)
  * @returns A hex string containing the encoded paymaster data including signature
  */
 export async function generatePaymasterData(
-  address: Hex,
-  privateKey: Hex,
   nonce: string,
+  address: Hex,
+  clientPK: Hex,
   validUntil: Date | number | bigint,
-  validAfter: Date | number | bigint
+  validAfter?: Date | number | bigint
 ) {
   if (validUntil instanceof Date) {
     validUntil = Math.floor(validUntil.getTime() / 1000);
@@ -55,7 +55,7 @@ export async function generatePaymasterData(
     message: {
       raw: fromHex(paymasterDataHash, "bytes"),
     },
-    privateKey: privateKey,
+    privateKey: clientPK,
   });
 
   const paymasterData = encodeAbiParameters(
@@ -63,14 +63,4 @@ export async function generatePaymasterData(
     [address, validUntil, validAfter, sig]
   );
   return paymasterData;
-}
-
-export async function paymasterData({ nonce,clientSWA , clientPrivateKey, validUntil, validAfter }: any) {
-  return generatePaymasterData(
-    clientSWA,
-    clientPrivateKey,
-    nonce,
-    validUntil,
-    validAfter
-  );
 }

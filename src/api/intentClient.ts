@@ -2,7 +2,11 @@ import axios, { isAxiosError } from "axios";
 import { BASE_URL } from "../config/env";
 import { IntentExecuteResponse } from "../types/intentExecute";
 import { ErrorResponse } from "../types/error";
+import { IntentEstimateResponse } from "../types/intentEstimate";
+import { SessionConfig } from "../types/sessionConfig";
+import { generateAuthToken } from "../utils/generateAuthToken";
 
+const estimateURL: string = `${BASE_URL}/api/oc/v1/estimate`;
 const executeURL: string = `${BASE_URL}/api/oc/v1/execute`;
 
 const post = async (url: string, headers: any, requestBody: any) => {
@@ -17,10 +21,21 @@ const post = async (url: string, headers: any, requestBody: any) => {
   }
 };
 
-export const execute = async (authToken: string, payload: any) => {
+export const estimate = async (sessionConfig: SessionConfig, payload: any) => {
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
-    "Content-Type": "application/json",
+    "Content-Type": "application/json"
+  };
+  const resp: IntentEstimateResponse | ErrorResponse = await post(estimateURL, headers, payload);
+  return resp;
+};
+
+export const execute = async (sessionConfig: SessionConfig, payload: any) => {
+  const authToken = await generateAuthToken(sessionConfig);
+  const headers = {
+    Authorization: `Bearer ${authToken}`,
+    "Content-Type": "application/json"
   };
   const resp: IntentExecuteResponse | ErrorResponse = await post(executeURL, headers, payload);
   return resp;
