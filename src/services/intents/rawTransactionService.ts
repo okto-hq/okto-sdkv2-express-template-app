@@ -13,24 +13,24 @@ import { SessionConfig } from "../../types/sessionConfig";
 import { UserOp } from "../../types/userOp";
 
 export const rawTransaction = async (
-  authToken: string,
   data: RawTransactionData,
   sessionConfig: SessionConfig,
   clientSWA: Hex,
   clientPK: Hex,
   feePayerAddress?: string
 ) => {
+
    // Generate nonce
    const nonce = uuidv4();
 
    // Feepayer address set to default if not provided
    if (!feePayerAddress) feePayerAddress = Constants.FEE_PAYER_ADDRESS;
  
-   // Get gas price for txn
-   const gasPrice = await explorerClient.getUserOperationGasPrice(authToken);
- 
    // Generate calldata
-   const callData: Hex = await generateRawTransactionCallData(nonce , data , feePayerAddress , sessionConfig , clientSWA , authToken )
+   const callData: Hex = await generateRawTransactionCallData(nonce , data , feePayerAddress , sessionConfig , clientSWA )
+   
+   // Get gas price for txn
+   const gasPrice = await explorerClient.getUserOperationGasPrice(sessionConfig);
  
    // Generate unsigned userOp
    const userOp: UserOp = await generateUserOp( nonce , sessionConfig , callData , gasPrice , clientSWA , clientPK );
@@ -39,7 +39,7 @@ export const rawTransaction = async (
    const signedUserOp: UserOp = await signUserOp(userOp, sessionConfig);
  
    // execute the userOp 
-   const jobId: IntentExecuteResponse | ErrorResponse = await intentClient.execute(authToken, signedUserOp);
+   const jobId: IntentExecuteResponse | ErrorResponse = await intentClient.execute(sessionConfig, signedUserOp);
  
   return jobId;
 };

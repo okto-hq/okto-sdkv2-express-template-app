@@ -19,8 +19,7 @@ export async function generateTokenTransferCallData(
   data: TokenTransferData,
   feePayerAddress: string,
   sessionConfig: SessionConfig,
-  clientSWA: Hex,
-  authToken: string
+  clientSWA: Hex
 ): Promise<Hex> {
   // Get the Intent execute API info as required on Okto chain
   const jobParametersAbiType =
@@ -28,7 +27,7 @@ export async function generateTokenTransferCallData(
   const gsnDataAbiType = `(bool isRequired, string[] requiredNetworks, ${jobParametersAbiType}[] tokens)`;
 
   // Get current chain info
-  const chainsResponse = await explorerClient.getChains(authToken);
+  const chainsResponse = await explorerClient.getChains(sessionConfig);
   const chains = chainsResponse.data.network;
 
   const currentChain = chains.find(
@@ -87,15 +86,14 @@ export async function generateRawTransactionCallData(
   data: RawTransactionData,
   feePayerAddress: string,
   sessionConfig: SessionConfig,
-  clientSWA: Hex,
-  authToken: string
+  clientSWA: Hex
 ): Promise<Hex> {
   // Get the Intent execute API info as required on Okto chain
   const jobParametersAbiType = "(string caip2Id, bytes[] transactions)";
   const gsnDataAbiType = `(bool isRequired, string[] requiredNetworks, ${jobParametersAbiType}[] tokens)`;
 
   // Get current chain info
-  const chainsResponse = await explorerClient.getChains(authToken);
+  const chainsResponse = await explorerClient.getChains(sessionConfig);
   const chains = chainsResponse.data.network;
 
   const currentChain = chains.find(

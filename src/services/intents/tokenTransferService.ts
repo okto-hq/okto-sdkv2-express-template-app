@@ -11,9 +11,9 @@ import { IntentExecuteResponse } from "../../types/intentExecute";
 import { ErrorResponse } from "../../types/error";
 import { SessionConfig } from "../../types/sessionConfig";
 import { UserOp } from "../../types/userOp";
+import { generateEstimatePayload } from "../../utils/userOp/generateEstimatePayload";
 
 export const tokenTransfer = async (
-  authToken: string,
   data: TokenTransferData,
   sessionConfig: SessionConfig,
   clientSWA: Hex,
@@ -26,20 +26,39 @@ export const tokenTransfer = async (
   // Feepayer address set to default if not provided
   if (!feePayerAddress) feePayerAddress = Constants.FEE_PAYER_ADDRESS;
 
-  // Get gas price for txns 
-  const gasPrice = await explorerClient.getUserOperationGasPrice(authToken);
-
   // Generate calldata
-  const callData: Hex = await generateTokenTransferCallData(nonce , data , feePayerAddress , sessionConfig , clientSWA , authToken )
+  const callData: Hex = await generateTokenTransferCallData(nonce, data, feePayerAddress, sessionConfig, clientSWA );
+
+  // Get gas price for txns
+  const gasPrice = await explorerClient.getUserOperationGasPrice(sessionConfig);
 
   // Generate unsigned userOp
-  const userOp: UserOp = await generateUserOp( nonce , sessionConfig , callData , gasPrice , clientSWA , clientPK );
+  const userOp: UserOp = await generateUserOp(nonce, sessionConfig, callData, gasPrice, clientSWA, clientPK);
 
   // Sign the userOp
   const signedUserOp: UserOp = await signUserOp(userOp, sessionConfig);
 
-  // execute the userOp 
-  const jobId: IntentExecuteResponse | ErrorResponse = await intentClient.execute(authToken, signedUserOp);
+  // execute the userOp
+  const jobId: IntentExecuteResponse | ErrorResponse = await intentClient.execute(sessionConfig, signedUserOp);
 
   return jobId;
 };
+
+
+export const tokenTransferEstimate = async (
+  data: TokenTransferData,
+  sessionConfig: SessionConfig,
+  feePayerAddress?: string
+) => {
+  // Generate nonce
+  const nonce = uuidv4();
+
+  // Generate Estimate payload 
+  const payload = generateEstimatePayload("TOKEN_TRANSFER" , nonce , data);
+
+  // send estimate request 
+  const estimateData = intentClient.estimate(sessionConfig , payload)
+
+  return estimateData;
+};
+

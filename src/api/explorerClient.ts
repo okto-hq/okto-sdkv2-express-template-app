@@ -1,5 +1,7 @@
 import axios, { isAxiosError } from "axios";
 import { BASE_URL } from "../config/env";
+import { SessionConfig } from "../types/sessionConfig";
+import { generateAuthToken } from "../utils/generateAuthToken";
 
 const getAccountURL: string = `${BASE_URL}/api/oc/v1/wallets`;
 const getChainsURL: string = `${BASE_URL}/api/oc/v1/supported/networks`;
@@ -11,9 +13,10 @@ const getOrderHistoryURL: string = `${BASE_URL}/api/oc/v1/orders`;
 const getUserOperationGasPriceURL: string = `${BASE_URL}/api/oc/v1/gas-values`;
 const readContractDataURL: string = `${BASE_URL}/api/oc/v1/readContractData`;
 
-export const getAccount = async (token: string) => {
+export const getAccount = async (sessionConfig: SessionConfig) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToken}`,
   };
   try {
     const response = await axios.get(getAccountURL, { headers });
@@ -25,9 +28,10 @@ export const getAccount = async (token: string) => {
   }
 };
 
-export const getChains = async (token: string) => {
+export const getChains = async (sessionConfig: SessionConfig) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToken}`,
   };
   try {
     const response = await axios.get(getChainsURL, { headers });
@@ -39,9 +43,10 @@ export const getChains = async (token: string) => {
   }
 };
 
-export const getTokens = async (token: string) => {
+export const getTokens = async (sessionConfig: SessionConfig) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToken}`,
   };
   try {
     const response = await axios.get(getTokensURL, { headers });
@@ -53,9 +58,10 @@ export const getTokens = async (token: string) => {
   }
 };
 
-export const getPortfolio = async (token: string) => {
+export const getPortfolio = async (sessionConfig: SessionConfig) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToken}`,
   };
   try {
     const response = await axios.get(getPortfolioURL, { headers });
@@ -67,9 +73,10 @@ export const getPortfolio = async (token: string) => {
   }
 };
 
-export const getPortfolioActivity = async (token: string) => {
+export const getPortfolioActivity = async (sessionConfig: SessionConfig) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToken}`,
   };
   try {
     const response = await axios.get(getPortfolioActivityURL, { headers });
@@ -81,9 +88,10 @@ export const getPortfolioActivity = async (token: string) => {
   }
 };
 
-export const getPortfolioNFT = async (token: string) => {
+export const getPortfolioNFT = async (sessionConfig: SessionConfig) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToken}`,
   };
   try {
     const response = await axios.get(getPortfolioNFTURL, { headers });
@@ -95,9 +103,10 @@ export const getPortfolioNFT = async (token: string) => {
   }
 };
 
-export const getOrderHistory = async (token: string) => {
+export const getOrderHistory = async (sessionConfig: SessionConfig) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToken}`,
   };
   try {
     const response = await axios.get(getOrderHistoryURL, { headers });
@@ -109,9 +118,10 @@ export const getOrderHistory = async (token: string) => {
   }
 };
 
-export const getUserOperationGasPrice = async (token: string) => {
+export const getUserOperationGasPrice = async (sessionConfig: SessionConfig) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToken}`,
   };
   try {
     const response = await axios.get(getUserOperationGasPriceURL, { headers });
@@ -123,9 +133,10 @@ export const getUserOperationGasPrice = async (token: string) => {
   }
 };
 
-export const readContractData = async (token: string, caip2id: string, data: any) => {
+export const readContractData = async (sessionConfig: SessionConfig, caip2id: string, data: any) => {
+  const authToken = generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${authToken}`
   };
   const body = {
     caip2id: caip2id,
