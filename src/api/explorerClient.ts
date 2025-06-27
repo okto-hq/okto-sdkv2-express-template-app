@@ -1,7 +1,7 @@
 import axios, { isAxiosError } from "axios";
 import { BASE_URL } from "../config/env";
 import { SessionConfig } from "../types/sessionConfig";
-import { generateAuthToken } from "../utils/generateAuthToken";
+import { generateAuthToken } from "../utils/auth/generateAuthToken";
 
 const getAccountURL: string = `${BASE_URL}/api/oc/v1/wallets`;
 const getChainsURL: string = `${BASE_URL}/api/oc/v1/supported/networks`;
