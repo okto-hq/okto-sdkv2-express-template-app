@@ -1,4 +1,11 @@
-import { rawTransaction } from "./rawTransactionService";
-import { tokenTransfer } from "./tokenTransferService";
+import { rawTransaction, rawTransactionEstimate, rawTransactionExecuteAfterEstimate } from "./rawTransactionService";
+import { tokenTransfer, tokenTransferEstimate, tokenTransferExecuteAfterEstimate } from "./tokenTransferService";
 
-export { rawTransaction, tokenTransfer };
+export {
+  rawTransaction,
+  rawTransactionEstimate,
+  rawTransactionExecuteAfterEstimate,
+  tokenTransfer,
+  tokenTransferEstimate,
+  tokenTransferExecuteAfterEstimate
+};

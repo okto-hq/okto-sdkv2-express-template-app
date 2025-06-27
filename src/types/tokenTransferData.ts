@@ -2,5 +2,5 @@ export interface TokenTransferData {
     caip2Id: string;
     recipient: string;
     token: string;
-    amount: number;
+    amount: string;
   }

@@ -1,5 +1,7 @@
+import { Hex } from "viem";
+
 export interface SessionConfig {
-  sessionPrivKey: string;
-  sessionPubKey: string;
+  sessionPrivKey: Hex;
+  sessionPubKey: Hex;
   userSWA: string;
 }

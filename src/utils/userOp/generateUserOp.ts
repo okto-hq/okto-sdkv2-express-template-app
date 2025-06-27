@@ -2,7 +2,7 @@ import { Hex, toHex } from "viem";
 import { nonceToBigInt } from "../../helper/nonceToBigInt";
 import { SessionConfig } from "../../types/sessionConfig";
 import { Constants } from "../../helper/constants";
-import { paymasterData } from "./generatePaymasterData";
+import { generatePaymasterData } from "./generatePaymasterData";
 
 export async function generateUserOp(
   nonce: string,
@@ -10,7 +10,7 @@ export async function generateUserOp(
   callData: Hex,
   gasPrice: any,
   clientSWA: Hex,
-  clientPrivateKey: string
+  clientPK: Hex
 ) {
   const userOp = {
     sender: sessionConfig.userSWA as Hex,
@@ -28,12 +28,12 @@ export async function generateUserOp(
       Constants.GAS_LIMITS.PAYMASTER_VERIFICATION_GAS_LIMIT
     ),
     callData: callData,
-    paymasterData: await paymasterData({
+    paymasterData: await generatePaymasterData(
       nonce,
       clientSWA,
-      clientPrivateKey,
-      validUntil: new Date(Date.now() + 6 * Constants.HOURS_IN_MS),
-    }),
+      clientPK,
+      new Date(Date.now() + 6 * Constants.HOURS_IN_MS),
+    ),
   };
 
   return userOp;

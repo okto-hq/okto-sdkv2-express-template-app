@@ -44,21 +44,33 @@ export const tokenTransfer = async (
   return jobId;
 };
 
-
 export const tokenTransferEstimate = async (
   data: TokenTransferData,
   sessionConfig: SessionConfig,
+  clientSWA: Hex,
+  clientPK: Hex,
   feePayerAddress?: string
 ) => {
   // Generate nonce
   const nonce = uuidv4();
 
   // Generate Estimate payload 
-  const payload = generateEstimatePayload("TOKEN_TRANSFER" , nonce , data);
+  const payload = await generateEstimatePayload("TOKEN_TRANSFER", nonce, data, clientSWA, clientPK, feePayerAddress );
 
   // send estimate request 
-  const estimateData = intentClient.estimate(sessionConfig , payload)
+  const estimateData = await intentClient.estimate(sessionConfig, payload)
 
   return estimateData;
 };
+
+export const tokenTransferExecuteAfterEstimate = async (userOp: UserOp , sessionConfig: SessionConfig) => {
+
+  // Sign the userOp
+  const signedUserOp: UserOp = await signUserOp(userOp, sessionConfig);
+
+  // execute the userOp
+  const jobId: IntentExecuteResponse | ErrorResponse = await intentClient.execute(sessionConfig, signedUserOp);
+  
+  return jobId;
+}
 

@@ -22,20 +22,20 @@ const post = async (url: string, headers: any, requestBody: any) => {
 };
 
 export const estimate = async (sessionConfig: SessionConfig, payload: any) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
-    "Content-Type": "application/json",
+    "Content-Type": "application/json"
   };
   const resp: IntentEstimateResponse | ErrorResponse = await post(estimateURL, headers, payload);
   return resp;
 };
 
 export const execute = async (sessionConfig: SessionConfig, payload: any) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
-    "Content-Type": "application/json",
+    "Content-Type": "application/json"
   };
   const resp: IntentExecuteResponse | ErrorResponse = await post(executeURL, headers, payload);
   return resp;

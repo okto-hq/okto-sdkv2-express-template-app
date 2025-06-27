@@ -14,7 +14,7 @@ const getUserOperationGasPriceURL: string = `${BASE_URL}/api/oc/v1/gas-values`;
 const readContractDataURL: string = `${BASE_URL}/api/oc/v1/readContractData`;
 
 export const getAccount = async (sessionConfig: SessionConfig) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
   };
@@ -29,7 +29,7 @@ export const getAccount = async (sessionConfig: SessionConfig) => {
 };
 
 export const getChains = async (sessionConfig: SessionConfig) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
   };
@@ -44,7 +44,7 @@ export const getChains = async (sessionConfig: SessionConfig) => {
 };
 
 export const getTokens = async (sessionConfig: SessionConfig) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
   };
@@ -59,7 +59,7 @@ export const getTokens = async (sessionConfig: SessionConfig) => {
 };
 
 export const getPortfolio = async (sessionConfig: SessionConfig) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
   };
@@ -74,7 +74,7 @@ export const getPortfolio = async (sessionConfig: SessionConfig) => {
 };
 
 export const getPortfolioActivity = async (sessionConfig: SessionConfig) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
   };
@@ -89,7 +89,7 @@ export const getPortfolioActivity = async (sessionConfig: SessionConfig) => {
 };
 
 export const getPortfolioNFT = async (sessionConfig: SessionConfig) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
   };
@@ -104,7 +104,7 @@ export const getPortfolioNFT = async (sessionConfig: SessionConfig) => {
 };
 
 export const getOrderHistory = async (sessionConfig: SessionConfig) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
   };
@@ -119,7 +119,7 @@ export const getOrderHistory = async (sessionConfig: SessionConfig) => {
 };
 
 export const getUserOperationGasPrice = async (sessionConfig: SessionConfig) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`,
   };
@@ -134,7 +134,7 @@ export const getUserOperationGasPrice = async (sessionConfig: SessionConfig) => 
 };
 
 export const readContractData = async (sessionConfig: SessionConfig, caip2id: string, data: any) => {
-  const authToken = generateAuthToken(sessionConfig);
+  const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`
   };

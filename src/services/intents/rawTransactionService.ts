@@ -11,6 +11,7 @@ import { IntentExecuteResponse } from "../../types/intentExecute";
 import { ErrorResponse } from "../../types/error";
 import { SessionConfig } from "../../types/sessionConfig";
 import { UserOp } from "../../types/userOp";
+import { generateEstimatePayload } from "../../utils/userOp/generateEstimatePayload";
 
 export const rawTransaction = async (
   data: RawTransactionData,
@@ -43,3 +44,33 @@ export const rawTransaction = async (
  
   return jobId;
 };
+
+export const rawTransactionEstimate = async (
+  data: RawTransactionData,
+  sessionConfig: SessionConfig,
+  clientSWA: Hex,
+  clientPK: Hex,
+  feePayerAddress?: string
+) => {
+  // Generate nonce
+  const nonce = uuidv4();
+
+  // Generate Estimate payload 
+  const payload = await generateEstimatePayload("RAW_TRANSACTION", nonce, data, clientSWA, clientPK, feePayerAddress );
+
+  // send estimate request 
+  const estimateData = await intentClient.estimate(sessionConfig, payload)
+
+  return estimateData;
+};
+
+export const rawTransactionExecuteAfterEstimate = async (userOp: UserOp , sessionConfig: SessionConfig) => {
+
+  // Sign the userOp
+  const signedUserOp: UserOp = await signUserOp(userOp, sessionConfig);
+
+  // execute the userOp
+  const jobId: IntentExecuteResponse | ErrorResponse = await intentClient.execute(sessionConfig, signedUserOp);
+  
+  return jobId;
+}

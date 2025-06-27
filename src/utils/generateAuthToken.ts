@@ -16,8 +16,8 @@ import { Hex } from "viem";
  */
 
 export async function generateAuthToken(sessionConfig: SessionConfig) {
-    const sessionPriv = sessionConfig?.sessionPrivKey as Hex;
-    const sessionPub = sessionConfig?.sessionPubKey as Hex;
+    const sessionPriv = sessionConfig?.sessionPrivKey;
+    const sessionPub = sessionConfig?.sessionPubKey;
     if (sessionPriv === void 0 || sessionPub === void 0) {
         throw new Error("Session keys are not set");
     }
