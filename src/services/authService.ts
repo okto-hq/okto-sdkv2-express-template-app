@@ -7,6 +7,7 @@ import { ProviderType } from "../types/provider";
 import { SessionKey } from "../utils/auth/sessionKey";
 import { generateAuthPayload } from "../utils/auth/generateAuthPayload";
 import { AuthenticateResponse } from "../types/AuthenticateResponse";
+import { SessionConfig } from "../types/sessionConfig";
 
 export const requestEmailOtp = async (email: string, clientSWA: Hex, clientPK: Hex) => {
   const payload = {
@@ -14,7 +15,7 @@ export const requestEmailOtp = async (email: string, clientSWA: Hex, clientPK: H
     client_swa: clientSWA,
     timestamp: Date.now()
   };
-  const clientSignature = await generateClientSignature(clientPK, payload);
+  const clientSignature: string = await generateClientSignature(clientPK, payload);
   const requestBody = {
     data: payload,
     client_signature: clientSignature,
@@ -32,7 +33,7 @@ export const verifyEmailOtp = async (email: string, token: string, otp: string, 
     client_swa: clientSWA,
     timestamp: Date.now()
   };
-  const clientSignature = await generateClientSignature(clientPK, payload);
+  const clientSignature: string = await generateClientSignature(clientPK, payload);
   const requestBody = {
     data: payload,
     client_signature: clientSignature,
@@ -49,7 +50,7 @@ export const requestWhatsappOtp = async (whatsapp_number: string, country_short_
     client_swa: clientSWA,
     timestamp: Date.now()
   };
-  const clientSignature = await generateClientSignature(clientPK, payload);
+  const clientSignature: string = await generateClientSignature(clientPK, payload);
   const requestBody = {
     data: payload,
     client_signature: clientSignature,
@@ -68,7 +69,7 @@ export const verifyWhatsappOtp = async (whatsapp_number: string, country_short_n
     client_swa: clientSWA,
     timestamp: Date.now()
   };
-  const clientSignature = await generateClientSignature(clientPK, payload);
+  const clientSignature: string = await generateClientSignature(clientPK, payload);
   const requestBody = {
     data: payload,
     client_signature: clientSignature,
@@ -91,10 +92,10 @@ export const loginUsingOAuth = async (idToken: string, provider: ProviderType, c
   const authenticateData: AuthenticateResponse | ErrorResponse = await authClient.authenticate(requestBody);
 
   // construct sessionConfig object 
-  const sessionConfig = {
-    sessionPrivKey: session.privateKeyHexWith0x,
-    sessionPubKey: session.uncompressedPublicKeyHexWith0x,
-    userSWA: "data" in authenticateData ? authenticateData.data.userSWA : undefined
+  const sessionConfig: SessionConfig = {
+    sessionPrivKey: session.privateKeyHexWith0x as Hex,
+    sessionPubKey: session.uncompressedPublicKeyHexWith0x as Hex,
+    userSWA: "data" in authenticateData ? authenticateData.data.userSWA : ""
   };
 
   return { authenticateData, sessionConfig };
