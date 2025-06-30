@@ -1,5 +1,5 @@
 import { signMessage } from "viem/accounts";
-import { SessionConfig } from "../types/sessionConfig";
+import { SessionConfig } from "../../types/sessionConfig";
 import { Hex } from "viem";
 
 /**

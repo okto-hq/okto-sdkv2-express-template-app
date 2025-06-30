@@ -1,21 +1,20 @@
-export interface SendEmailOTPResponse {
+export interface SendOTPResponse {
   status: string;
   data: {
-    status?: string;
-    message?: string;
-    code?: number;
-    token?: string;
-    trace_id?: string;
+    status: string;
+    message: string;
+    code: number;
+    token: string;
+    trace_id: string;
   };
 }
 
-
-export interface VerifyEmailOTPResponse {
+export interface VerifyOTPResponse {
   status: string;
   data: {
-    auth_token?: string;
-    message?: string;
-    refresh_auth_token?: string;
-    device_token?: string;
+    auth_token: string;
+    message: string;
+    refresh_auth_token: string;
+    device_token: string;
   };
 }

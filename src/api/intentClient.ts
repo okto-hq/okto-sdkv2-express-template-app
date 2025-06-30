@@ -4,7 +4,7 @@ import { IntentExecuteResponse } from "../types/intentExecute";
 import { ErrorResponse } from "../types/error";
 import { IntentEstimateResponse } from "../types/intentEstimate";
 import { SessionConfig } from "../types/sessionConfig";
-import { generateAuthToken } from "../utils/generateAuthToken";
+import { generateAuthToken } from "../utils/auth/generateAuthToken";
 
 const estimateURL: string = `${BASE_URL}/api/oc/v1/estimate`;
 const executeURL: string = `${BASE_URL}/api/oc/v1/execute`;
