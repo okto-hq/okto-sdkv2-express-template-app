@@ -66,5 +66,5 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     authenticateData: AuthenticateResponse | ErrorResponse;
     sessionConfig: SessionConfig;
   } = await AuthService.loginUsingOAuth(idToken, provider, clientSWA, clientPK);
-  res.json(authData);
+  res.json({status: "success", data: authData});
 };
