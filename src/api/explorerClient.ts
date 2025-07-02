@@ -16,7 +16,7 @@ const readContractDataURL: string = `${BASE_URL}/api/oc/v1/readContractData`;
 export const getAccount = async (sessionConfig: SessionConfig) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: `Bearer ${authToken}`
   };
   try {
     const response = await axios.get(getAccountURL, { headers });
@@ -31,7 +31,7 @@ export const getAccount = async (sessionConfig: SessionConfig) => {
 export const getChains = async (sessionConfig: SessionConfig) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: `Bearer ${authToken}`
   };
   try {
     const response = await axios.get(getChainsURL, { headers });
@@ -46,7 +46,7 @@ export const getChains = async (sessionConfig: SessionConfig) => {
 export const getTokens = async (sessionConfig: SessionConfig) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: `Bearer ${authToken}`
   };
   try {
     const response = await axios.get(getTokensURL, { headers });
@@ -61,7 +61,7 @@ export const getTokens = async (sessionConfig: SessionConfig) => {
 export const getPortfolio = async (sessionConfig: SessionConfig) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: `Bearer ${authToken}`
   };
   try {
     const response = await axios.get(getPortfolioURL, { headers });
@@ -76,7 +76,7 @@ export const getPortfolio = async (sessionConfig: SessionConfig) => {
 export const getPortfolioActivity = async (sessionConfig: SessionConfig) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: `Bearer ${authToken}`
   };
   try {
     const response = await axios.get(getPortfolioActivityURL, { headers });
@@ -91,7 +91,7 @@ export const getPortfolioActivity = async (sessionConfig: SessionConfig) => {
 export const getPortfolioNFT = async (sessionConfig: SessionConfig) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: `Bearer ${authToken}`
   };
   try {
     const response = await axios.get(getPortfolioNFTURL, { headers });
@@ -106,7 +106,7 @@ export const getPortfolioNFT = async (sessionConfig: SessionConfig) => {
 export const getOrderHistory = async (sessionConfig: SessionConfig) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: `Bearer ${authToken}`
   };
   try {
     const response = await axios.get(getOrderHistoryURL, { headers });
@@ -121,7 +121,7 @@ export const getOrderHistory = async (sessionConfig: SessionConfig) => {
 export const getUserOperationGasPrice = async (sessionConfig: SessionConfig) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: `Bearer ${authToken}`
   };
   try {
     const response = await axios.get(getUserOperationGasPriceURL, { headers });
@@ -133,15 +133,15 @@ export const getUserOperationGasPrice = async (sessionConfig: SessionConfig) => 
   }
 };
 
-export const readContractData = async (sessionConfig: SessionConfig, caip2id: string, data: any) => {
+export const readContractData = async (sessionConfig: SessionConfig, caip2Id: string, data: any) => {
   const authToken = await generateAuthToken(sessionConfig);
   const headers = {
     Authorization: `Bearer ${authToken}`
   };
   const body = {
-    caip2id: caip2id,
+    caip2Id: caip2Id,
     data: data
-  }
+  };
   try {
     const response = await axios.post(readContractDataURL, body, { headers });
     return response.data;
@@ -150,5 +150,4 @@ export const readContractData = async (sessionConfig: SessionConfig, caip2id: st
       return error.response?.data;
     }
   }
-
-}
+};
