@@ -46,8 +46,8 @@ export const orderHistory = async (req: Request, res: Response, next: NextFuncti
 
 export const readContractData = async (req: Request, res: Response, next: NextFunction) => {
   const sessionConfig: SessionConfig = req.body.sessionConfig;
-  const caip2id: string = req.body.caip2id;
+  const caip2Id: string = req.body.caip2Id;
   const data: any = req.body.data;
-  const contractData = await explorerService.readContractData(sessionConfig, caip2id, data);
+  const contractData = await explorerService.readContractData(sessionConfig, caip2Id, data);
   res.json(contractData);
 };

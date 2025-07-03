@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "18ed917e-fc6f-4d18-b9d1-8a8b13ba437f",
+		"name": "Okto-express-template-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "35984689",
+		"_collection_link": "https://devrel-okto-4221.postman.co/workspace/Devrel-Okto-Workspace~bbd09003-cf3e-4bf1-820a-7ddc3911b3b7/collection/35984689-18ed917e-fc6f-4d18-b9d1-8a8b13ba437f?action=share&source=collection_link&creator=35984689"
+	},
+	"item": [
+		{
+			"name": "Explorer",
+			"item": [
+				{
+					"name": "getChains",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sessionConfig\": {\r\n     \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n     \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n     \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/explorer/chains"
+					},
+					"response": []
+				},
+				{
+					"name": "getAccount",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sessionConfig\": {\r\n     \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n     \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n     \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/explorer/account"
+					},
+					"response": []
+				},
+				{
+					"name": "getTokens",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sessionConfig\": {\r\n     \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n     \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n     \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/explorer/tokens"
+					},
+					"response": []
+				},
+				{
+					"name": "getPortfolio",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sessionConfig\": {\r\n     \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n     \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n     \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/explorer/portfolio"
+					},
+					"response": []
+				},
+				{
+					"name": "getPortfolioActivity",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sessionConfig\": {\r\n     \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n     \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n     \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/explorer/portfolio-activity"
+					},
+					"response": []
+				},
+				{
+					"name": "getPortfolioNFT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sessionConfig\": {\r\n     \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n     \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n     \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/explorer/portfolio-nft"
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderHistory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sessionConfig\": {\r\n     \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n     \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n     \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/explorer/order-history"
+					},
+					"response": []
+				},
+				{
+					"name": "readContractData",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sessionConfig\": {\r\n     \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n     \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n     \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n   },\r\n  \"caip2Id\": \"eip155:84532\",\r\n  \"data\": {\r\n    /* chain specific read-contract data payload */\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/explorer/read-contract-data"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Intents",
+			"item": [
+				{
+					"name": "tokenTransfer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caip2Id\": \"eip155:84532\",\r\n    \"recipient\": \"0x88beE8eb691FFAFB192BAC4D1E7042e1b44c3eF2\",\r\n    \"token\": \"\",\r\n    \"amount\": \"100000000000\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\",\r\n    \"sessionConfig\": {\r\n        \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n        \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n        \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n    }\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/intent/tokenTransfer"
+					},
+					"response": []
+				},
+				{
+					"name": "tokenTransferEstimate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caip2Id\": \"eip155:84532\",\r\n    \"recipient\": \"0x88beE8eb691FFAFB192BAC4D1E7042e1b44c3eF2\",\r\n    \"token\": \"\",\r\n    \"amount\": \"100000000000\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\",\r\n    \"sessionConfig\": {\r\n        \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n        \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n        \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n    }\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/intent/tokenTransfer/estimate"
+					},
+					"response": []
+				},
+				{
+					"name": "tokenTransferExecuteAfterEstimate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sessionConfig\": {\r\n        \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n        \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n        \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n    },\r\n    \"userOp\": {\r\n        \"callData\": \"0x8dd7712f000000000000000000000000000000000000000000000000000000000000000000000000000000000543ad80b41c5f5956d34503668cdb965decb617000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000444bf7b90d7000000000000000000000000000000005ed48d1d25dd46568c446fcacf1c81ef000000000000000000000000db70faf78b19576d3c969487cb75f5152cee2e8f0000000000000000000000002fab7eb7475f6ff9a0258f1fb4383a6aa30a18e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000240000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001a0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000c6569703135353a3834353332000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000008c7b2264617461223a223078222c2266726f6d223a22307837323738393266443830336239393864323836303232313236363630303737433766633237613239222c22746f223a22307838386265453865623639314646414642313932424143344431453730343265316234346333654632222c2276616c7565223a223130303030303030303030303030227d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f5241575f5452414e53414354494f4e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\r\n        \"callGasLimit\": \"0x556ae\",\r\n        \"maxFeePerGas\": \"0xee6b2800\",\r\n        \"maxPriorityFeePerGas\": \"0xee6b2800\",\r\n        \"nonce\": \"0x000000000000000000000000000000005ed48d1d25dd46568c446fcacf1c81ef\",\r\n        \"paymaster\": \"0x74324fa6fa67b833dfdea4c1b3a9898574d076e3\",\r\n        \"paymasterData\": \"0x000000000000000000000000db70faf78b19576d3c969487cb75f5152cee2e8f00000000000000000000000000000000000000000000000000000000685ebfd900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000004151eeb1582fa75ad9e68faba2a369132cfd23479eb644dd6795014daad23fab5a116090948d59706a9321e7bc5c862357cca20b95e2f54db09745d0c34ff9583b1c00000000000000000000000000000000000000000000000000000000000000\",\r\n        \"paymasterPostOpGasLimit\": \"0x1cc7\",\r\n        \"paymasterVerificationGasLimit\": \"0x13baa\",\r\n        \"preVerificationGas\": \"0x158f8\",\r\n        \"sender\": \"0x2fab7eb7475f6ff9a0258f1fb4383a6aa30a18e0\",\r\n        \"verificationGasLimit\": \"0x286d2\"\r\n    }\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/intent/tokenTransfer/executeAfterEstimate"
+					},
+					"response": []
+				},
+				{
+					"name": "rawTransaction",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caip2Id\": \"eip155:84532\",\r\n    \"transaction\": {\r\n        \"from\": \"0x727892fD803b998d286022126660077C7fc27a29\",\r\n        \"to\": \"0x88beE8eb691FFAFB192BAC4D1E7042e1b44c3eF2\",\r\n        \"data\": \"0x\",\r\n        \"value\": \"10000000000000\"\r\n    },\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\",\r\n    \"sessionConfig\": {\r\n        \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n        \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n        \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n    }\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/intent/rawTransaction"
+					},
+					"response": []
+				},
+				{
+					"name": "rawTransactionEstimate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caip2Id\": \"eip155:84532\",\r\n    \"transaction\": {\r\n        \"from\": \"0x727892fD803b998d286022126660077C7fc27a29\",\r\n        \"to\": \"0x88beE8eb691FFAFB192BAC4D1E7042e1b44c3eF2\",\r\n        \"data\": \"0x\",\r\n        \"value\": \"10000000000000\"\r\n    },\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\",\r\n    \"sessionConfig\": {\r\n        \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n        \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n        \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n    }\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/intent/rawTransaction/estimate"
+					},
+					"response": []
+				},
+				{
+					"name": "rawTransactionExecuteAfterEstimate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sessionConfig\": {\r\n        \"sessionPrivKey\": \"0x3adcb2cc515d6ecda3b93ec8f51656ff7e7679763cd9842c16ce0be6a7046c5e\",\r\n        \"sessionPubKey\": \"0x0483d719c732713c2fd27463472eb9b3223fa7fc0f3d333f02d71acb571673bb2ff4ad98f8766c08271322cd4ee3cef75fce8edeb61dd9ed710688354e41cd9439\",\r\n        \"userSWA\": \"0x2FAb7Eb7475F6fF9a0258F1fb4383a6aA30A18e0\"\r\n    },\r\n    \"userOp\": {\r\n            \"callData\": \"0x8dd7712f000000000000000000000000000000000000000000000000000000000000000000000000000000000543ad80b41c5f5956d34503668cdb965decb617000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000444bf7b90d7000000000000000000000000000000002671e0e4c40b4cb09db98092e7609a42000000000000000000000000db70faf78b19576d3c969487cb75f5152cee2e8f0000000000000000000000002fab7eb7475f6ff9a0258f1fb4383a6aa30a18e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000240000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001a0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000c6569703135353a3834353332000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000008c7b2264617461223a223078222c2266726f6d223a22307837323738393266443830336239393864323836303232313236363630303737433766633237613239222c22746f223a22307838386265453865623639314646414642313932424143344431453730343265316234346333654632222c2276616c7565223a223130303030303030303030303030227d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f5241575f5452414e53414354494f4e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\r\n            \"callGasLimit\": \"0x556ae\",\r\n            \"maxFeePerGas\": \"0xee6b2800\",\r\n            \"maxPriorityFeePerGas\": \"0xee6b2800\",\r\n            \"nonce\": \"0x000000000000000000000000000000002671e0e4c40b4cb09db98092e7609a42\",\r\n            \"paymaster\": \"0x74324fa6fa67b833dfdea4c1b3a9898574d076e3\",\r\n            \"paymasterData\": \"0x000000000000000000000000db70faf78b19576d3c969487cb75f5152cee2e8f00000000000000000000000000000000000000000000000000000000685ec3790000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000413cdfd06b9572e7b93cb35fa2dcb3417abb68f1e3f282ddf8f2dce79075462c14523c619657e9f71ce79c776301298a425d1de859b93c0c78481cfc6c0a3116c31c00000000000000000000000000000000000000000000000000000000000000\",\r\n            \"paymasterPostOpGasLimit\": \"0x1cc7\",\r\n            \"paymasterVerificationGasLimit\": \"0x13baa\",\r\n            \"preVerificationGas\": \"0x158f8\",\r\n            \"sender\": \"0x2fab7eb7475f6ff9a0258f1fb4383a6aa30a18e0\",\r\n            \"verificationGasLimit\": \"0x286d2\"\r\n        }\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/intent/rawTransaction/executeAfterEstimate"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SendEmailOTP",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"devrel@coindcx.com\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/auth/email/otp"
+					},
+					"response": []
+				},
+				{
+					"name": "SendWhatsappOTP",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"whatsapp_number\": \"89xxxxxxxx\",\r\n    \"country_short_name\": \"IN\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/auth/whatsapp/otp"
+					},
+					"response": []
+				},
+				{
+					"name": "VerifyEmailOTP",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"devrel@coindcx.com\",\r\n    \"token\": \"05c2d02f-eb3a-57c6-8bac-3b4de64176ee\",\r\n    \"otp\": \"434930\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/auth/email/verify-otp"
+					},
+					"response": []
+				},
+				{
+					"name": "VerifyWhatsappOTP",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"whatsapp_number\": \"89xxxxxxxx\",\r\n    \"country_short_name\": \"IN\",\r\n    \"token\": \"42975793-d58a-5aeb-afb9-cad4c0dc404d\",\r\n    \"otp\": \"650012\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/auth/whatsapp/verify-otp"
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2luZGN4X2lkIjoiMjZmN2M5M...\",\r\n    \"provider\": \"okto\",  /* [\"google\", \"okto\", \"client_jwt\", \"twitter\", \"apple\" ] */\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{SERVER_BASE_URL}}/api/auth/authenticate"
+					},
+					"response": [
+						{
+							"name": "Email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2luZGN4X2lkIjoiMjZmN2M5M...\",\r\n    \"provider\": \"okto\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{SERVER_BASE_URL}}/api/auth/authenticate"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Whatsapp",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2luZGN4X2lkIjoiMjZmN2M5M...\",\r\n    \"provider\": \"okto\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{SERVER_BASE_URL}}/api/auth/authenticate"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "JWT",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2luZGN4X2lkIjoiMjZmN2M5M...\",\r\n    \"provider\": \"client_jwt\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{SERVER_BASE_URL}}/api/auth/authenticate"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Google",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2luZGN4X2lkIjoiMjZmN2M5M...\",\r\n    \"provider\": \"google\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{SERVER_BASE_URL}}/api/auth/authenticate"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Twitter",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2luZGN4X2lkIjoiMjZmN2M5M...\",\r\n    \"provider\": \"twitter\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{SERVER_BASE_URL}}/api/auth/authenticate"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Authenticate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2luZGN4X2lkIjoiMjZmN2M5M...\",\r\n    \"provider\": \"apple\",\r\n    \"client_swa\": \"{{CLIENT_SWA}}\",\r\n    \"client_pk\": \"{{CLIENT_PRIVATE_KEY}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{SERVER_BASE_URL}}/api/auth/authenticate"
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SERVER_BASE_URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "CLIENT_SWA",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "CLIENT_PRIVATE_KEY",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
