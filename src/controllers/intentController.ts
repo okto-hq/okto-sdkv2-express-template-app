@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import * as intentService from "../services/intents/intentService";
-import { Hex } from "viem";
+import type { Hex } from "viem";
 import { SessionConfig } from "../types/sessionConfig";
 import { AptosRawTransactionData, EVMRawTransactionData, RawTransactionData } from "../types/rawTransactionData";
 import { TokenTransferData } from "../types/tokenTransferData";
 import { UserOp } from "../types/userOp";
+import { NFTTransferData } from "../types/nftTransferData";
 
 export const tokenTransfer = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -23,6 +24,29 @@ export const tokenTransfer = async (req: Request, res: Response, next: NextFunct
 
   // call tokentransfer function with required parameters
   const jobId = await intentService.tokenTransfer(data, sessionConfig, clientSWA, clientPK, feePayerAddress);
+
+  res.json(jobId);
+};
+
+export const nftTransfer = async (req: Request, res: Response, next: NextFunction) => {
+
+  // extract parameters from request body
+  const caip2Id: string = req.body.caip2Id;
+  const collectionAddress: string = req.body.collectionAddress;
+  const nftId: string = req.body.nftId;
+  const recipientWalletAddress: Hex = req.body.recipientWalletAddress;
+  const amount: number = req.body.amount;
+  const nftType: string = req.body.nftType;
+  const sessionConfig: SessionConfig = req.body.sessionConfig;
+  const clientSWA: Hex = req.body.client_swa as Hex;
+  const clientPK: Hex = req.body.client_pk as Hex;
+  const feePayerAddress: string | undefined = req.body.feePayerAddress;
+
+  // data payload required for tokentransfer intent
+  const data: NFTTransferData = { caip2Id, collectionAddress, nftId, recipientWalletAddress, amount, nftType };
+
+  // call tokentransfer function with required parameters
+  const jobId = await intentService.nftTransfer(data, sessionConfig, clientPK, clientSWA, feePayerAddress);
 
   res.json(jobId);
 };
@@ -110,5 +134,3 @@ export const rawTransactionExecuteAfterEstimate = async (req: Request, res: Resp
 
   res.json(jobId);
 }
-
-

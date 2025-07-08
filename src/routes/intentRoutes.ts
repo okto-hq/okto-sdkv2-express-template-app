@@ -5,12 +5,14 @@ import {
   tokenTransferEstimate,
   rawTransactionEstimate,
   tokenTransferExecuteAfterEstimate,
-  rawTransactionExecuteAfterEstimate
+  rawTransactionExecuteAfterEstimate,
+  nftTransfer
 } from "../controllers/intentController";
 
 const router = Router();
 
 router.post("/tokenTransfer", tokenTransfer);
+router.post("/nftTransfer", nftTransfer);
 router.post("/rawTransaction", rawTransaction);
 
 router.post("/tokenTransfer/estimate", tokenTransferEstimate);

@@ -13,6 +13,7 @@ import { TokenTransferData } from "../../types/tokenTransferData";
 import { SessionConfig } from "../../types/sessionConfig";
 import * as explorerClient from "../../api/explorerClient";
 import { RawTransactionData } from "../../types/rawTransactionData";
+import { NFTTransferData } from "../../types/nftTransferData";
 
 export async function generateTokenTransferCallData(
   nonce: string,
@@ -139,6 +140,77 @@ export async function generateRawTransactionCallData(
             },
           ]),
           Constants.INTENT_TYPE.RAW_TRANSACTION,
+        ],
+      }),
+    ]
+  );
+
+  return calldata;
+}
+
+export async function generateNFTTransferCallData(
+  nonce: string,
+  data: NFTTransferData,
+  feePayerAddress: string,
+  sessionConfig: SessionConfig,
+  clientSWA: Hex
+): Promise<Hex> {
+
+  // Get the Intent execute API info as required on Okto chain
+  const jobParametersAbiType =
+    "(string caip2Id, string nftId, string recipientWalletAddress, string collectionAddress, string nftType, uint amount)";
+  const gsnDataAbiType = `(bool isRequired, string[] requiredNetworks, ${jobParametersAbiType}[] tokens)`;
+
+  // Get current chain info
+  const chainsResponse = await explorerClient.getChains(sessionConfig);
+  const chains = chainsResponse.data.network;
+
+  const currentChain = chains.find(
+    (chain: any) => chain.caip_id.toLowerCase() === data.caip2Id.toLowerCase()
+  );
+
+  // create the UserOp Call data for NFT transfer intent
+  const calldata = encodeAbiParameters(
+    parseAbiParameters("bytes4, address, uint256, bytes"),
+    [
+      Constants.EXECUTE_USEROP_FUNCTION_SELECTOR, // execute userOp function selector
+      Constants.getEnvConfig().JOB_MANAGER_ADDRESS, // Job manager Address is replaced by the "NFTTransferBloc" address
+      Constants.USEROP_VALUE, // userop value
+      encodeFunctionData({
+        abi: INTENT_ABI,
+        functionName: Constants.FUNCTION_NAME,
+        args: [
+          toHex(nonceToBigInt(nonce), { size: 32 }),
+          clientSWA,
+          sessionConfig.userSWA,
+          feePayerAddress,
+          encodeAbiParameters(
+            parseAbiParameters("(bool gsnEnabled, bool sponsorshipEnabled)"),
+            [
+              {
+                gsnEnabled: currentChain.gsn_enabled ?? false,
+                sponsorshipEnabled: currentChain.sponsorship_enabled ?? false,
+              },
+            ]
+          ),
+          encodeAbiParameters(parseAbiParameters(gsnDataAbiType), [
+            {
+              isRequired: false,
+              requiredNetworks: [],
+              tokens: [],
+            },
+          ]),
+          encodeAbiParameters(parseAbiParameters(jobParametersAbiType), [
+            {
+              amount: BigInt(data.amount),
+              caip2Id: data.caip2Id,
+              recipientWalletAddress: data.recipientWalletAddress,
+              nftId: data.nftId,
+              collectionAddress: data.collectionAddress,
+              nftType: data.nftType,
+            },
+          ]),
+          Constants.INTENT_TYPE.NFT_TRANSFER,
         ],
       }),
     ]
