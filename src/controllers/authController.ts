@@ -80,7 +80,7 @@ export const callbackTwitter = async (req: Request, res: Response, next: NextFun
     const params = new URLSearchParams();
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:5173/auth/callback/twitter");
+    params.append("redirect_uri", "https://public-okto-react-sdk-template.vercel.app/auth/callback/twitter");
     params.append("code_verifier", "challenge");
 
     const tokenRes = await axios.post("https://api.twitter.com/2/oauth2/token", params, {
@@ -111,7 +111,7 @@ export const callbackApple = async (req: Request, res: Response, next: NextFunct
     const params = new URLSearchParams();
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:5173/auth/callback/apple");
+    params.append("redirect_uri", "https://public-okto-react-sdk-template.vercel.app/auth/callback/apple");
     params.append("client_id", clientId);
     params.append("client_secret", clientSecret);
 
