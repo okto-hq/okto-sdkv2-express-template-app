@@ -60,7 +60,14 @@ export const requestWhatsappOtp = async (whatsapp_number: string, country_short_
   return otpData;
 };
 
-export const verifyWhatsappOtp = async (whatsapp_number: string, country_short_name: string, token: string, otp: string, clientSWA: Hex, clientPK: Hex) => {
+export const verifyWhatsappOtp = async (
+  whatsapp_number: string,
+  country_short_name: string,
+  token: string,
+  otp: string,
+  clientSWA: Hex,
+  clientPK: Hex
+) => {
   const payload = {
     whatsapp_number: whatsapp_number,
     country_short_name: country_short_name,
@@ -91,12 +98,20 @@ export const loginUsingOAuth = async (idToken: string, provider: ProviderType, c
   // call the authenticate endpoint to register the session
   const authenticateData: AuthenticateResponse | ErrorResponse = await authClient.authenticate(requestBody);
 
-  // construct sessionConfig object 
+  // construct sessionConfig object
   const sessionConfig: SessionConfig = {
     sessionPrivKey: session.privateKeyHexWith0x as Hex,
     sessionPubKey: session.uncompressedPublicKeyHexWith0x as Hex,
     userSWA: "data" in authenticateData ? authenticateData.data.userSWA : ""
   };
 
-  return { authenticateData, sessionConfig };
+  if (authenticateData.status == "success" && "data" in authenticateData) {
+    return {
+      status: "success",
+      data: authenticateData.data,
+      sessionConfig: sessionConfig
+    };
+  } else {
+    return authenticateData;
+  }
 };

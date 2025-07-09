@@ -6,6 +6,9 @@ import { SendOTPResponse, VerifyOTPResponse } from "../types/otp";
 import { ErrorResponse } from "../types/error";
 import { SessionConfig } from "../types/sessionConfig";
 import { AuthenticateResponse } from "../types/AuthenticateResponse";
+import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const requestOTPForEmail = async (req: Request, res: Response, next: NextFunction) => {
   const email: string = req.body.email;
@@ -62,9 +65,67 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
   const provider: ProviderType = req.body.provider;
   const clientSWA: Hex = req.body.client_swa as Hex;
   const clientPK: Hex = req.body.client_pk as Hex;
-  const authData: {
-    authenticateData: AuthenticateResponse | ErrorResponse;
-    sessionConfig: SessionConfig;
-  } = await AuthService.loginUsingOAuth(idToken, provider, clientSWA, clientPK);
-  res.json({status: "success", data: authData});
+  const authData:  AuthenticateResponse | ErrorResponse = await AuthService.loginUsingOAuth(idToken, provider, clientSWA, clientPK);
+  res.json(authData);
+};
+
+export const callbackTwitter = async (req: Request, res: Response, next: NextFunction) => {
+  const { code } = req.body;
+
+  try {
+    const clientId = process.env.TWITTER_CLIENT_ID || "";
+    const clientSecret = process.env.TWITTER_CLIENT_SECRET || "";
+    const basicAuth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+
+    const params = new URLSearchParams();
+    params.append("grant_type", "authorization_code");
+    params.append("code", code);
+    params.append("redirect_uri", "http://localhost:5173/auth/callback/twitter");
+    params.append("code_verifier", "challenge");
+
+    const tokenRes = await axios.post("https://api.twitter.com/2/oauth2/token", params, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${basicAuth}`
+      }
+    });
+
+    const { access_token } = tokenRes.data;
+
+    res.json({ status: "success", data: { access_token } });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: "error", data: err });
+  }
+};
+
+export const callbackApple = async (req: Request, res: Response, next: NextFunction) => {
+  const { code } = req.body;
+
+  console.log("request body: ",req.body);
+
+  try {
+    const clientId = process.env.APPLE_CLIENT_ID || ""; 
+    const clientSecret = process.env.APPLE_CLIENT_SECRET || ""; 
+
+    const params = new URLSearchParams();
+    params.append("grant_type", "authorization_code");
+    params.append("code", code);
+    params.append("redirect_uri", "http://localhost:5173/auth/callback/apple");
+    params.append("client_id", clientId);
+    params.append("client_secret", clientSecret);
+
+    const tokenRes = await axios.post("https://appleid.apple.com/auth/token", params, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    const { access_token, id_token } = tokenRes.data;
+
+    res.json({ status: "success", data: { access_token, id_token } });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: "error", data: err });
+  }
 };

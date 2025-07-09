@@ -12,11 +12,8 @@
 			"item": [
 				{
 					"name": "getChains",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -33,11 +30,8 @@
 				},
 				{
 					"name": "getAccount",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -54,11 +48,8 @@
 				},
 				{
 					"name": "getTokens",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -75,11 +66,8 @@
 				},
 				{
 					"name": "getPortfolio",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -96,11 +84,8 @@
 				},
 				{
 					"name": "getPortfolioActivity",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -117,11 +102,8 @@
 				},
 				{
 					"name": "getPortfolioNFT",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -138,11 +120,8 @@
 				},
 				{
 					"name": "getOrderHistory",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -535,7 +514,7 @@
 							"body": null
 						},
 						{
-							"name": "Authenticate",
+							"name": "Apple",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
