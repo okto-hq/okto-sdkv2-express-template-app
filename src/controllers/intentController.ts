@@ -28,29 +28,6 @@ export const tokenTransfer = async (req: Request, res: Response, next: NextFunct
   res.json(jobId);
 };
 
-export const nftTransfer = async (req: Request, res: Response, next: NextFunction) => {
-
-  // extract parameters from request body
-  const caip2Id: string = req.body.caip2Id;
-  const collectionAddress: string = req.body.collectionAddress;
-  const nftId: string = req.body.nftId;
-  const recipientWalletAddress: Hex = req.body.recipientWalletAddress;
-  const amount: number = req.body.amount;
-  const nftType: string = req.body.nftType;
-  const sessionConfig: SessionConfig = req.body.sessionConfig;
-  const clientSWA: Hex = req.body.client_swa as Hex;
-  const clientPK: Hex = req.body.client_pk as Hex;
-  const feePayerAddress: string | undefined = req.body.feePayerAddress;
-
-  // data payload required for tokentransfer intent
-  const data: NFTTransferData = { caip2Id, collectionAddress, nftId, recipientWalletAddress, amount, nftType };
-
-  // call tokentransfer function with required parameters
-  const jobId = await intentService.nftTransfer(data, sessionConfig, clientPK, clientSWA, feePayerAddress);
-
-  res.json(jobId);
-};
-
 export const tokenTransferEstimate = async (req: Request, res: Response, next: NextFunction) => {
 
   // extract parameters from request body
@@ -78,12 +55,69 @@ export const tokenTransferExecuteAfterEstimate = async (req: Request, res: Respo
   const userOp: UserOp = req.body.userOp;
   const sessionConfig: SessionConfig = req.body.sessionConfig;
 
-  // call tokenTransferExecuteAfterEstimate function with required parameters
+  // call TokenTransferExecuteAfterEstimate function with required parameters
   const jobId = await intentService.tokenTransferExecuteAfterEstimate( userOp , sessionConfig );
 
   res.json(jobId);
 };
 
+export const nftTransfer = async (req: Request, res: Response, next: NextFunction) => {
+
+  // extract parameters from request body
+  const caip2Id: string = req.body.caip2Id;
+  const collectionAddress: string = req.body.collectionAddress;
+  const nftId: string = req.body.nftId;
+  const recipientWalletAddress: Hex = req.body.recipientWalletAddress;
+  const amount: number = req.body.amount;
+  const nftType: string = req.body.nftType;
+  const sessionConfig: SessionConfig = req.body.sessionConfig;
+  const clientSWA: Hex = req.body.client_swa as Hex;
+  const clientPK: Hex = req.body.client_pk as Hex;
+  const feePayerAddress: string | undefined = req.body.feePayerAddress;
+
+  // data payload required for nftTransfer intent
+  const data: NFTTransferData = { caip2Id, collectionAddress, nftId, recipientWalletAddress, amount, nftType };
+
+  // call nftTransfer function with required parameters
+  const jobId = await intentService.nftTransfer(data, sessionConfig, clientPK, clientSWA, feePayerAddress);
+
+  res.json(jobId);
+};
+
+export const nftTransferEstimate = async (req: Request, res: Response, next: NextFunction) => {
+
+  // extract parameters from request body
+  const caip2Id: string = req.body.caip2Id;
+  const collectionAddress: string = req.body.collectionAddress;
+  const nftId: string = req.body.nftId;
+  const recipientWalletAddress: string = req.body.recipientWalletAddress;
+  const amount: number | bigint = req.body.amount;
+  const nftType: string = req.body.nftType;
+  const sessionConfig: SessionConfig = req.body.sessionConfig;
+  const clientSWA: Hex = req.body.client_swa as Hex;
+  const clientPK: Hex = req.body.client_pk as Hex;
+  const feePayerAddress: string | undefined = req.body.feePayerAddress;
+
+  // data payload required for nfttransfer intent
+  const data: NFTTransferData = { caip2Id, collectionAddress, nftId, recipientWalletAddress, amount ,nftType };
+
+  // call nftTransferEstimate function with required parameters
+  const estimateData = await intentService.nftTransferEstimate(data, sessionConfig, clientSWA, clientPK, feePayerAddress);
+
+  res.json(estimateData);
+};
+
+export const nftTransferExecuteAfterEstimate = async (req: Request, res: Response, next: NextFunction) => {
+
+  // extract parameters from request body
+  const userOp: UserOp = req.body.userOp;
+  const sessionConfig: SessionConfig = req.body.sessionConfig;
+
+  // call nftTransferExecuteAfterEstimate function with required parameters
+  const jobId = await intentService.nftTransferExecuteAfterEstimate( userOp , sessionConfig );
+
+  res.json(jobId);
+};
 
 export const rawTransaction = async (req: Request, res: Response, next: NextFunction) => {
 
