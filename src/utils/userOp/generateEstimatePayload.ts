@@ -4,7 +4,14 @@ import { generatePaymasterData } from "./generatePaymasterData";
 
 export type IntentType = "TOKEN_TRANSFER" | "RAW_TRANSACTION" | "NFT_TRANSFER";
 
-export async function generateEstimatePayload(intentType: IntentType, nonce: string, data: any, clientSWA: Hex, clientPK: Hex, feePayerAddress?: string) {
+export async function generateEstimatePayload(
+  intentType: IntentType,
+  nonce: string,
+  data: any,
+  clientSWA: Hex,
+  clientPK: Hex,
+  feePayerAddress?: string
+) {
   let details;
 
   if (intentType == "TOKEN_TRANSFER") {
@@ -13,6 +20,17 @@ export async function generateEstimatePayload(intentType: IntentType, nonce: str
       caip2Id: data.caip2Id,
       tokenAddress: data.token,
       amount: data.amount
+    };
+  }
+
+  if (intentType == "NFT_TRANSFER") {
+    details = {
+      caip2Id: data.caipId,
+      nftId: data.nftId,
+      recipientWalletAddress: data.recipientWalletAddress,
+      collectionAddress: data.collectionAddress,
+      amount: data.amount,
+      nftType: data.nftType
     };
   }
 
@@ -26,12 +44,7 @@ export async function generateEstimatePayload(intentType: IntentType, nonce: str
   const estimateUserOpPayload: any = {
     type: intentType,
     jobId: nonce,
-    paymasterData: await generatePaymasterData(
-      nonce,
-      clientSWA,
-      clientPK,
-      new Date(Date.now() + 6 * Constants.HOURS_IN_MS),
-    ),
+    paymasterData: await generatePaymasterData(nonce, clientSWA, clientPK, new Date(Date.now() + 6 * Constants.HOURS_IN_MS)),
     gasDetails: {
       maxFeePerGas: toHex(Constants.GAS_LIMITS.MAX_FEE_PER_GAS),
       maxPriorityFeePerGas: toHex(Constants.GAS_LIMITS.MAX_PRIORITY_FEE_PER_GAS)
@@ -39,7 +52,7 @@ export async function generateEstimatePayload(intentType: IntentType, nonce: str
     details: details
   };
 
-  if(feePayerAddress) estimateUserOpPayload.feePayerAddress = feePayerAddress;
+  if (feePayerAddress) estimateUserOpPayload.feePayerAddress = feePayerAddress;
 
   return estimateUserOpPayload;
 }

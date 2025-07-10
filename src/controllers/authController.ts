@@ -4,7 +4,6 @@ import { Hex } from "viem";
 import { ProviderType } from "../types/provider";
 import { SendOTPResponse, VerifyOTPResponse } from "../types/otp";
 import { ErrorResponse } from "../types/error";
-import { SessionConfig } from "../types/sessionConfig";
 import { AuthenticateResponse } from "../types/AuthenticateResponse";
 import axios from "axios";
 import dotenv from "dotenv";

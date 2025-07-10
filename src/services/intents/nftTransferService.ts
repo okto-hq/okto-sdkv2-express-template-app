@@ -11,6 +11,7 @@ import { ErrorResponse } from "../../types/error";
 import { generateNFTTransferCallData } from "../../utils/userOp/generateCallData";
 import { generateUserOp } from "../../utils/userOp/generateUserOp";
 import { signUserOp } from "../../utils/userOp/signUserOp";
+import { generateEstimatePayload } from "../../utils/userOp/generateEstimatePayload";
 
 export const nftTransfer = async (
   data: NFTTransferData,
@@ -40,8 +41,33 @@ export const nftTransfer = async (
   const jobId: IntentExecuteResponse | ErrorResponse = await intentClient.execute(sessionConfig, signedUserOp);
 
   return jobId;
-}
+};
 
-const nftEstimate = async () => { }
+export const nftTransferEstimate = async (
+  data: NFTTransferData,
+  sessionConfig: SessionConfig,
+  clientSWA: Hex,
+  clientPK: Hex,
+  feePayerAddress?: string
+) => {
+  // Generate nonce
+  const nonce = uuidv4();
 
-const nftTransferExecuteAfterEstimate = async () => { }
+  // Generate Estimate payload
+  const payload = await generateEstimatePayload("NFT_TRANSFER", nonce, data, clientSWA, clientPK, feePayerAddress);
+
+  // send estimate request
+  const estimateData = await intentClient.estimate(sessionConfig, payload);
+
+  return estimateData;
+};
+
+export const nftTransferExecuteAfterEstimate = async (userOp: UserOp, sessionConfig: SessionConfig) => {
+  // Sign the userOp
+  const signedUserOp: UserOp = await signUserOp(userOp, sessionConfig);
+
+  // execute the userOp
+  const jobId: IntentExecuteResponse | ErrorResponse = await intentClient.execute(sessionConfig, signedUserOp);
+
+  return jobId;
+};

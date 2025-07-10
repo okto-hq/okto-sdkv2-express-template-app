@@ -1,6 +1,6 @@
 import { rawTransaction, rawTransactionEstimate, rawTransactionExecuteAfterEstimate } from "./rawTransactionService";
 import { tokenTransfer, tokenTransferEstimate, tokenTransferExecuteAfterEstimate } from "./tokenTransferService";
-import { nftTransfer } from "./nftTransferService";
+import { nftTransfer, nftTransferEstimate, nftTransferExecuteAfterEstimate } from "./nftTransferService";
 
 export {
   rawTransaction,
@@ -10,4 +10,6 @@ export {
   tokenTransferEstimate,
   tokenTransferExecuteAfterEstimate,
   nftTransfer,
+  nftTransferEstimate,
+  nftTransferExecuteAfterEstimate
 };
