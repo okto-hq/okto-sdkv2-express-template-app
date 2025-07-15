@@ -74,3 +74,28 @@ export const tokenTransferExecuteAfterEstimate = async (userOp: UserOp , session
   return jobId;
 }
 
+export const tokenTransferUserOp = async (
+  data: TokenTransferData,
+  sessionConfig: SessionConfig,
+  clientSWA: Hex,
+  clientPK: Hex,
+  feePayerAddress?: string
+) => {
+  // Generate nonce
+  const nonce = uuidv4();
+
+  // Feepayer address set to default if not provided
+  if (!feePayerAddress) feePayerAddress = Constants.FEE_PAYER_ADDRESS;
+
+  // Generate calldata
+  const callData: Hex = await generateTokenTransferCallData(nonce, data, feePayerAddress, sessionConfig, clientSWA );
+
+  // Get gas price for txns
+  const gasPrice = await explorerClient.getUserOperationGasPrice(sessionConfig);
+
+  // Generate unsigned userOp
+  const userOp: UserOp = await generateUserOp(nonce, sessionConfig, callData, gasPrice, clientSWA, clientPK);
+
+  return userOp;
+};
+

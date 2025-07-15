@@ -71,3 +71,27 @@ export const nftTransferExecuteAfterEstimate = async (userOp: UserOp, sessionCon
 
   return jobId;
 };
+
+export const nftTransferUserOp = async (
+  data: NFTTransferData,
+  sessionConfig: SessionConfig,
+  clientPK: Hex,
+  clientSWA: Hex,
+  feePayerAddress?: string
+) => {
+  // Generate nonce
+  const nonce = uuidv4();
+
+  // Feepayer address set to default if not provided
+  if (!feePayerAddress) feePayerAddress = Constants.FEE_PAYER_ADDRESS;
+
+  const callData: Hex = await generateNFTTransferCallData(nonce, data, feePayerAddress, sessionConfig, clientSWA);
+
+  // Get gas price for txns
+  const gasPrice = await explorerClient.getUserOperationGasPrice(sessionConfig);
+
+  // Generate unsigned userOp
+  const userOp: UserOp = await generateUserOp(nonce, sessionConfig, callData, gasPrice, clientSWA, clientPK);
+
+  return userOp;
+};

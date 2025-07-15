@@ -5,9 +5,11 @@ import { ErrorResponse } from "../types/error";
 import { IntentEstimateResponse } from "../types/intentEstimate";
 import { SessionConfig } from "../types/sessionConfig";
 import { generateAuthToken } from "../utils/auth/generateAuthToken";
+import { SignMessageResponse } from "../types/SignMessage";
 
 const estimateURL: string = `${BASE_URL}/api/oc/v1/estimate`;
 const executeURL: string = `${BASE_URL}/api/oc/v1/execute`;
+const signMessageURL: string = `${BASE_URL}/api/oc/v1/signMessage`;
 
 const post = async (url: string, headers: any, requestBody: any) => {
   try {
@@ -38,5 +40,15 @@ export const execute = async (sessionConfig: SessionConfig, payload: any) => {
     "Content-Type": "application/json"
   };
   const resp: IntentExecuteResponse | ErrorResponse = await post(executeURL, headers, payload);
+  return resp;
+};
+
+export const signMessage = async (sessionConfig: SessionConfig, payload: any) => {
+  const authToken = await generateAuthToken(sessionConfig);
+  const headers = {
+    Authorization: `Bearer ${authToken}`,
+    "Content-Type": "application/json"
+  };
+  const resp: SignMessageResponse | ErrorResponse = await post(executeURL, headers, payload);
   return resp;
 };
