@@ -49,6 +49,6 @@ export const signMessage = async (sessionConfig: SessionConfig, payload: any) =>
     Authorization: `Bearer ${authToken}`,
     "Content-Type": "application/json"
   };
-  const resp: SignMessageResponse | ErrorResponse = await post(executeURL, headers, payload);
+  const resp: SignMessageResponse | ErrorResponse = await post(signMessageURL, headers, payload);
   return resp;
 };
