@@ -93,15 +93,12 @@ export const callbackTwitter = async (req: Request, res: Response, next: NextFun
 
     res.json({ status: "success", data: { access_token } });
   } catch (err) {
-    console.log(err);
     res.json({ status: "error", data: err });
   }
 };
 
 export const callbackApple = async (req: Request, res: Response, next: NextFunction) => {
   const { code } = req.body;
-
-  console.log("request body: ",req.body);
 
   try {
     const clientId = process.env.APPLE_CLIENT_ID || ""; 
@@ -124,7 +121,6 @@ export const callbackApple = async (req: Request, res: Response, next: NextFunct
 
     res.json({ status: "success", data: { access_token, id_token } });
   } catch (err) {
-    console.log(err);
     res.json({ status: "error", data: err });
   }
 };

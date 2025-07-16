@@ -1,6 +1,8 @@
-import { rawTransaction, rawTransactionEstimate, rawTransactionExecuteAfterEstimate } from "./rawTransactionService";
-import { tokenTransfer, tokenTransferEstimate, tokenTransferExecuteAfterEstimate } from "./tokenTransferService";
-import { nftTransfer, nftTransferEstimate, nftTransferExecuteAfterEstimate } from "./nftTransferService";
+import { rawTransaction, rawTransactionEstimate, rawTransactionExecuteAfterEstimate, rawTransactionUserOp } from "./rawTransactionService";
+import { tokenTransfer, tokenTransferEstimate, tokenTransferExecuteAfterEstimate, tokenTransferUserOp } from "./tokenTransferService";
+import { nftTransfer, nftTransferEstimate, nftTransferExecuteAfterEstimate, nftTransferUserOp } from "./nftTransferService";
+import { signMessage, signTypedData } from "./signMessageService";
+import { signUserOp, executeUserOp } from "./signAndExecuteUserOp";
 
 export {
   rawTransaction,
@@ -11,5 +13,12 @@ export {
   tokenTransferExecuteAfterEstimate,
   nftTransfer,
   nftTransferEstimate,
-  nftTransferExecuteAfterEstimate
+  nftTransferExecuteAfterEstimate,
+  signMessage,
+  signTypedData,
+  tokenTransferUserOp,
+  rawTransactionUserOp,
+  nftTransferUserOp,
+  signUserOp,
+  executeUserOp
 };
