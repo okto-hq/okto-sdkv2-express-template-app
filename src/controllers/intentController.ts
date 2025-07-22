@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import * as intentService from "../services/intents/intentService";
 import type { Hex } from "viem";
 import { SessionConfig } from "../types/sessionConfig";
-import { AptosRawTransactionData, EVMRawTransactionData, RawTransactionData } from "../types/rawTransactionData";
+import { AptosRawTransactionData, EVMRawTransactionData, RawTransactionData, SVMRawTransactionData } from "../types/rawTransactionData";
 import { TokenTransferData } from "../types/tokenTransferData";
 import { UserOp } from "../types/userOp";
 import { NFTTransferData } from "../types/nftTransferData";
@@ -167,7 +167,7 @@ export const rawTransaction = async (req: Request, res: Response, next: NextFunc
 
   // extract parameters from request body
   const caip2Id: string = req.body.caip2Id;
-  const transaction: EVMRawTransactionData | AptosRawTransactionData = req.body.transaction;
+  const transaction: EVMRawTransactionData | AptosRawTransactionData | SVMRawTransactionData = req.body.transaction;
   const sessionConfig: SessionConfig = req.body.sessionConfig;
   const clientSWA: Hex = req.body.client_swa as Hex;
   const clientPK: Hex = req.body.client_pk as Hex;
@@ -186,7 +186,7 @@ export const rawTransactionUserOp = async (req: Request, res: Response, next: Ne
 
   // extract parameters from request body
   const caip2Id: string = req.body.caip2Id;
-  const transaction: EVMRawTransactionData | AptosRawTransactionData = req.body.transaction;
+  const transaction: EVMRawTransactionData | AptosRawTransactionData | SVMRawTransactionData = req.body.transaction;
   const sessionConfig: SessionConfig = req.body.sessionConfig;
   const clientSWA: Hex = req.body.client_swa as Hex;
   const clientPK: Hex = req.body.client_pk as Hex;
@@ -205,7 +205,7 @@ export const rawTransactionEstimate = async (req: Request, res: Response, next: 
 
   // extract parameters from request body
   const caip2Id: string = req.body.caip2Id;
-  const transaction: EVMRawTransactionData | AptosRawTransactionData = req.body.transaction;
+  const transaction: EVMRawTransactionData | AptosRawTransactionData | SVMRawTransactionData = req.body.transaction;
   const sessionConfig: SessionConfig = req.body.sessionConfig;
   const clientSWA: Hex = req.body.client_swa as Hex;
   const clientPK: Hex = req.body.client_pk as Hex;
